@@ -1,6 +1,6 @@
 //% color="#00CC00" icon="\u2B88"
-//% block="XGO Lite"
-//% block.loc.nl="XGO Lite"
+//% block="XGO Rider"
+//% block.loc.nl="XGO Rider"
 namespace CXgoRider {
 
     let headData = 0x5500
@@ -406,8 +406,8 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% block="walk %movement"
-    //% block.loc.nl="loop %movement"
+    //% block="ride %movement"
+    //% block.loc.nl="rijd %movement"
     export function move(movement: Movement) {
         switch (movement) {
             case Movement.Forward: MESSAGE = Message.Forward; break;
