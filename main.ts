@@ -1,4 +1,4 @@
-//% color="#00CC00" icon="\u2B88"
+//% color="#00CC00" icon="\uf1f9"
 //% block="XGO Rider"
 //% block.loc.nl="XGO Rider"
 namespace CXgoRider {
