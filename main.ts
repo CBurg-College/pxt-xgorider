@@ -451,16 +451,16 @@ namespace CXgoRider {
 
     //% block="lean %angle ° to the left"
     //% block.loc.nl="hel %angle ° over naar links"
-    //% angle.min=0 angle.max=100 angle.defl=0
+    //% angle.min=0 angle.max=45 angle.defl=0
     export function leanLeft(angle: number) {
-        MESSAGE = 700 - angle
+        MESSAGE = 700 - 2*angle
         if (!PAUSE) handleMessage()
     }
     //% block="lean %angle ° to the right"
     //% block.loc.nl="hel %angle ° over naar rechts"
-    //% angle.min=0 angle.max=100 angle.defl=0
+    //% angle.min=0 angle.max=45 angle.defl=0
     export function leanRight(angle: number) {
-        MESSAGE = 700 + angle
+        MESSAGE = 700 + 2*angle
         if (!PAUSE) handleMessage()
     }
 
