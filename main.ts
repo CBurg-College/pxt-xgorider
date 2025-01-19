@@ -138,6 +138,9 @@ namespace CXgoRider {
         TurnRight,      // the rotation will be stopped by
         TurnOff,        // a movement message or the stop message
 
+        Stretch,        // stretch or shrink the body
+        Angle,          // angle of the wheels to the floor
+
         Pee             // standard action
     }
 
@@ -235,6 +238,18 @@ namespace CXgoRider {
     // Message: 1000 to 1100
     let SPEED: number = 50
 
+    // Stretch range:
+    // --------------
+    // Value: -20 to 20 (in mm)
+    // Message: 500 to 540
+    let STRETCH: number = 0
+
+    // Angle range:
+    // --------------
+    // Value: -100 to 100 (in degr)
+    // Message: 700 to 800
+    let ANGLE: number = 0
+
     export enum Action {
         //% block="pee"
         //% block.loc.nl="plassen"
@@ -259,6 +274,22 @@ namespace CXgoRider {
         if (MESSAGE >= 10000) {
             wait = MESSAGE - 10000
             MESSAGE = Message.Wait
+        }
+
+        // Instead of 'Message.Stretch', this message is submitted by
+        // the calculated value of '500 + required height'.
+        if (MESSAGE >= 500) {
+            STRETCH = MESSAGE - 500
+            // reactivate the latest movement message
+            MESSAGE = Message.Stretch
+        }
+
+        // Instead of 'Message.Stretch', this message is submitted by
+        // the calculated value of '500 + required height'.
+        if (MESSAGE >= 700) {
+            ANGLE = MESSAGE - 800
+            // reactivate the latest movement message
+            MESSAGE = Message.Angle
         }
 
         // Instead of 'Message.Speed', this message is submitted by
@@ -393,6 +424,37 @@ namespace CXgoRider {
         switch (action) {
             case Action.Pee: MESSAGE = Message.Pee; break;
         }
+        if (!PAUSE) handleMessage()
+    }
+
+    //% block="stretch %height mm"
+    //% block.loc.nl="strek %height mm"
+    //% height.min=0 height.max=20 height.defl=0
+    export function stretch(height: number) {
+        MESSAGE = 520 + height
+        if (!PAUSE) handleMessage()
+    }
+
+    //% block="shrink %height mm"
+    //% block.loc.nl="krimp %height mm"
+    //% height.min=0 height.max=20 height.defl=0
+    export function shrink(height: number) {
+        MESSAGE = 520 - height
+        if (!PAUSE) handleMessage()
+    }
+
+    //% block="lean %angle ° to the left"
+    //% block.loc.nl="hell %angle ° naar links"
+    //% angle.min=0 angle.max=100 angle.defl=0
+    export function leanLeft(angle: number) {
+        MESSAGE = 800 - angle
+        if (!PAUSE) handleMessage()
+    }
+    //% block="lean %angle ° to the left"
+    //% block.loc.nl="hell %angle ° naar links"
+    //% angle.min=0 angle.max=100 angle.defl=0
+    export function leanRight(angle: number) {
+        MESSAGE = 800 + angle
         if (!PAUSE) handleMessage()
     }
 
