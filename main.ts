@@ -81,8 +81,6 @@ namespace CXgoRider {
 
     function moveRider(direct: Direction, speed: number) {
         if (direct == Direction.Forward)
-            speed = speed
-        else
             speed = -speed
         let data = Math.map(speed, -100, 100, 0, 255)
         writeCommand(0x09, 0x30, data)
@@ -91,8 +89,6 @@ namespace CXgoRider {
 
     function rotateRider(direct: Direction, speed: number) {
         if (direct == Direction.Clockwise)
-            speed = speed
-        else
             speed = -speed
         let data = Math.map(speed, -100, 100, 0, 255)
         writeCommand(0x09, 0x32, data)
@@ -316,12 +312,12 @@ namespace CXgoRider {
             case Message.TurnLeft:
                 MOVEMENT = Message.Left
                 moveRider(Direction.Forward, 0)
-                rotateRider(Direction.Clockwise, SPEED)
+                rotateRider(Direction.CounterClockwise, SPEED)
                 break
             case Message.TurnRight:
                 MOVEMENT = Message.Right
                 moveRider(Direction.Forward, 0)
-                rotateRider(Direction.CounterClockwise, SPEED)
+                rotateRider(Direction.Clockwise, SPEED)
                 break
             case Message.TurnOff:
                 MOVEMENT = Message.TurnOff
