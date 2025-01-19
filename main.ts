@@ -276,28 +276,28 @@ namespace CXgoRider {
             MESSAGE = Message.Wait
         }
 
-        // Instead of 'Message.Stretch', this message is submitted by
-        // the calculated value of '500 + required height'.
-        if (MESSAGE >= 500) {
-            STRETCH = MESSAGE - 500
-            // reactivate the latest movement message
-            MESSAGE = Message.Stretch
-        }
-
-        // Instead of 'Message.Stretch', this message is submitted by
-        // the calculated value of '500 + required height'.
-        if (MESSAGE >= 700) {
-            ANGLE = MESSAGE - 800
-            // reactivate the latest movement message
-            MESSAGE = Message.Angle
-        }
-
         // Instead of 'Message.Speed', this message is submitted by
         // the calculated value of '1000 + required speed'.
         if (MESSAGE >= 1000) {
             SPEED = MESSAGE - 1000
             // reactivate the latest movement message
             MESSAGE = MOVEMENT
+        }
+
+        // Instead of 'Message.Angle', this message is submitted by
+        // the calculated value of '700 + required angle'.
+        if (MESSAGE >= 700) {
+            ANGLE = MESSAGE - 800
+            // reactivate the latest movement message
+            MESSAGE = Message.Angle
+        }
+
+        // Instead of 'Message.Stretch', this message is submitted by
+        // the calculated value of '500 + required height'.
+        if (MESSAGE >= 500) {
+            STRETCH = MESSAGE - 500
+            // reactivate the latest movement message
+            MESSAGE = Message.Stretch
         }
 
         // The messages 'Message.FastWave', 'Message.NormalWave'
@@ -450,17 +450,17 @@ namespace CXgoRider {
     }
 
     //% block="lean %angle ° to the left"
-    //% block.loc.nl="hell %angle ° naar links"
+    //% block.loc.nl="hel %angle ° over naar links"
     //% angle.min=0 angle.max=100 angle.defl=0
     export function leanLeft(angle: number) {
-        MESSAGE = 800 - angle
+        MESSAGE = 700 - angle
         if (!PAUSE) handleMessage()
     }
-    //% block="lean %angle ° to the left"
-    //% block.loc.nl="hell %angle ° naar links"
+    //% block="lean %angle ° to the right"
+    //% block.loc.nl="hel %angle ° over naar rechts"
     //% angle.min=0 angle.max=100 angle.defl=0
     export function leanRight(angle: number) {
-        MESSAGE = 800 + angle
+        MESSAGE = 700 + angle
         if (!PAUSE) handleMessage()
     }
 
