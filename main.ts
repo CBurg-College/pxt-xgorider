@@ -316,12 +316,12 @@ namespace CXgoRider {
             case Message.TurnLeft:
                 MOVEMENT = Message.Left
                 moveRider(Direction.Forward, 0)
-                rotateRider(Direction.CounterClockwise, SPEED)
+                rotateRider(Direction.Clockwise, SPEED)
                 break
             case Message.TurnRight:
                 MOVEMENT = Message.Right
                 moveRider(Direction.Forward, 0)
-                rotateRider(Direction.Clockwise, SPEED)
+                rotateRider(Direction.CounterClockwise, SPEED)
                 break
             case Message.TurnOff:
                 MOVEMENT = Message.TurnOff
