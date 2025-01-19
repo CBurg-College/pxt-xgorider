@@ -80,6 +80,7 @@ namespace CXgoRider {
     }
 
     function moveRider(direct: Direction, speed: number) {
+        rotateRider(Direction.Forward, 0)
         if (direct == Direction.Forward)
             speed = speed
         else
@@ -90,6 +91,7 @@ namespace CXgoRider {
     }
 
     function rotateRider(direct: Direction, speed: number) {
+        moveRider(Direction.Forward, 0)
         if (direct == Direction.Clockwise)
             speed = speed
         else
