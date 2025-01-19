@@ -295,7 +295,7 @@ namespace CXgoRider {
         // Instead of 'Message.Stretch', this message is submitted by
         // the calculated value of '500 + required height'.
         if (MESSAGE >= 500) {
-            STRETCH = MESSAGE - 500
+            STRETCH = MESSAGE - 520
             // reactivate the latest movement message
             MESSAGE = Message.Stretch
         }
