@@ -287,7 +287,7 @@ namespace CXgoRider {
         // Instead of 'Message.Angle', this message is submitted by
         // the calculated value of '600 + required angle'.
         if (MESSAGE >= 600) {
-            ANGLE = MESSAGE - 700
+            ANGLE = MESSAGE - 600
             // reactivate the latest movement message
             MESSAGE = Message.Angle
         }
