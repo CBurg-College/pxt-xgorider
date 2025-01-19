@@ -368,6 +368,12 @@ namespace CXgoRider {
                 MESSAGE = MOVEMENT
                 handleMessage()
                 break
+            case Message.Stretch:
+                setHeight(STRETCH)
+                break
+            case Message.Angle:
+                setAngle(ANGLE)
+                break
             //
             // XGO STANDARD ACTIONS
             //
