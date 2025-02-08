@@ -141,7 +141,7 @@ namespace CXgoRider {
         Stretch,        // stretch or shrink the body
         Angle,          // angle of the wheels to the floor
 
-        Pee             // standard action
+        NotImplemented  // standard action
     }
 
     let MESSAGE: number = -1
@@ -251,9 +251,9 @@ namespace CXgoRider {
     let ANGLE: number = 0
 
     export enum Action {
-        //% block="pee"
-        //% block.loc.nl="plassen"
-        Pee
+        //% block="not applicable"
+        //% block.loc.nl="niet aanwezig"
+        NotImplemented
     }
 
     ///////////////////////////////
@@ -377,7 +377,7 @@ namespace CXgoRider {
             //
             // XGO STANDARD ACTIONS
             //
-            case Message.Pee:
+            case Message.NotImplemented:
                 break
         }
         MESSAGE = -1
@@ -395,15 +395,17 @@ namespace CXgoRider {
     // PROGRAMMING BLOCKS //
     ////////////////////////
 
+/*
     //% subcategory="Bewegen"
     //% block="perform the %action"
     //% block.loc.nl="ga %action"
     export function performAction(action: Action) {
         switch (action) {
-            case Action.Pee: MESSAGE = Message.Pee; break;
+            case Action.NotImplemented: MESSAGE = Message.NotImplemented; break;
         }
         if (!PAUSE) handleMessage()
     }
+*/
 
     //% subcategory="Bewegen"
     //% block="stretch %height mm"
