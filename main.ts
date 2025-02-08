@@ -395,7 +395,7 @@ namespace CXgoRider {
     // PROGRAMMING BLOCKS //
     ////////////////////////
 
-    //% subcategory="Wave"
+    //% subcategory.loc.en="Wave"
     //% subcategory.loc.nl="Wave"
     //% block="position"
     //% block.loc.nl="positie"
@@ -403,7 +403,7 @@ namespace CXgoRider {
         return POSITION
     }
 
-    //% subcategory="Wave"
+    //% subcategory.loc.en="Wave"
     //% subcategory.loc.nl="Wave"
     //% block="follow at %pos"
     //% block.loc.nl="volg op %pos"
@@ -411,7 +411,7 @@ namespace CXgoRider {
         POSITION = pos + 1
     }
 
-    //% subcategory="Wave"
+    //% subcategory.loc.en="Wave"
     //% subcategory.loc.nl="Wave"
     //% block="position %player"
     //% block.loc.nl="positie %player"
@@ -419,7 +419,7 @@ namespace CXgoRider {
         return POSITION
     }
 
-    //% subcategory="Wave"
+    //% subcategory.loc.en="Wave"
     //% subcategory.loc.nl="Wave"
     //% block="do a %wave wave"
     //% block.loc.nl="maak een %wave wave"
@@ -432,7 +432,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Motion"
+    //% subcategory.loc.en="Motion"
     //% subcategory.loc.nl="Beweging"
     //% block="perform the %action"
     //% block.loc.nl="ga %action"
@@ -443,7 +443,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Motion"
+    //% subcategory.loc.en="Motion"
     //% subcategory.loc.nl="Beweging"
     //% block="stretch %height mm"
     //% block.loc.nl="strek %height mm"
@@ -453,7 +453,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Motion"
+    //% subcategory.loc.en="Motion"
     //% subcategory.loc.nl="Beweging"
     //% block="shrink %height mm"
     //% block.loc.nl="krimp %height mm"
@@ -463,7 +463,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Motion"
+    //% subcategory.loc.en="Motion"
     //% subcategory.loc.nl="Beweging"
     //% block="lean %angle ° to the left"
     //% block.loc.nl="hel %angle ° over naar links"
@@ -473,7 +473,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Motion"
+    //% subcategory.loc.en="Motion"
     //% subcategory.loc.nl="Beweging"
     //% block="lean %angle ° to the right"
     //% block.loc.nl="hel %angle ° over naar rechts"
@@ -483,7 +483,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Ride"
+    //% subcategory.loc.en="Ride"
     //% subcategory.loc.nl="Rijden"
     //% block="turn %rotation"
     //% block.loc.nl="draai %rotation"
@@ -495,7 +495,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Ride"
+    //% subcategory.loc.en="Ride"
     //% subcategory.loc.nl="Rijden"
     //% block="ride %movement"
     //% block.loc.nl="rijd %movement"
@@ -507,7 +507,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Ride"
+    //% subcategory.loc.en="Ride"
     //% subcategory.loc.nl="Rijden"
     //% block="set speed to %speed \\%"
     //% block.loc.nl="stel de snelheid in op %speed \\%"
@@ -517,7 +517,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="Ride"
+    //% subcategory.loc.en="Ride"
     //% subcategory.loc.nl="Rijden"
     //% block="stop"
     //% block.loc.nl="stop"
@@ -526,7 +526,7 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
-    //% subcategory="General"
+    //% subcategory.loc.en="General"
     //% subcategory.loc.nl="Algemeen"
     //% block="a number from %min upto %max"
     //% block.loc.nl="een getal van %min t/m %max"
@@ -543,7 +543,7 @@ namespace CXgoRider {
         return i
     }
 
-    //% subcategory="General"
+    //% subcategory.loc.en="General"
     //% subcategory.loc.nl="Algemeen"
     //% block="wait %time sec"
     //% block.loc.nl="wacht %time sec"
@@ -554,7 +554,7 @@ namespace CXgoRider {
     }
 
     //% color="#008800"
-    //% subcategory="General"
+    //% subcategory.loc.en="General"
     //% subcategory.loc.nl="Algemeen"
     //% block="comment: %dummy"
     //% block.loc.nl="uitleg: %dummy"
