@@ -476,6 +476,36 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 
+    //% block="a number from %min upto %max"
+    //% block.loc.nl="een getal van %min t/m %max"
+    //% max.defl=10
+    export function randomInt(min: number, max: number): number {
+        let i = 0
+        if (min > max) {
+            i = min
+            min = max
+            max = i
+        }
+        i = max - min + 1
+        i = min + Math.floor(Math.random() * i)
+        return i
+    }
+
+    //% block="wait %time sec"
+    //% block.loc.nl="wacht %time sec"
+    //% min.defl=1
+    export function wait(time: number) {
+        MESSAGE = 10000 + time
+        if (!PAUSE) handleMessage()
+    }
+
+    //% block="stop"
+    //% block.loc.nl="stop"
+    export function stop() {
+        MESSAGE = Message.Stop
+        if (!PAUSE) handleMessage()
+    }
+
     //% block="turn %rotation"
     //% block.loc.nl="draai %rotation"
     export function turn(rotation: Rotation) {
@@ -501,36 +531,6 @@ namespace CXgoRider {
     //% speed.min=0 speed.max=100 speed.defl=50
     export function setSpeed(speed: number) {
         MESSAGE = 1000 + speed;
-        if (!PAUSE) handleMessage()
-    }
-
-    //% block="stop"
-    //% block.loc.nl="stop"
-    export function stop() {
-        MESSAGE = Message.Stop
-        if (!PAUSE) handleMessage()
-    }
-
-    //% block="a number from %min upto %max"
-    //% block.loc.nl="een getal van %min t/m %max"
-    //% max.defl=10
-    export function randomInt(min: number, max: number): number {
-        let i = 0
-        if (min > max) {
-            i = min
-            min = max
-            max = i
-        }
-        i = max - min + 1
-        i = min + Math.floor(Math.random() * i)
-        return i
-    }
-
-    //% block="wait %time sec"
-    //% block.loc.nl="wacht %time sec"
-    //% min.defl=1
-    export function wait(time: number) {
-        MESSAGE = 10000 + time
         if (!PAUSE) handleMessage()
     }
 
