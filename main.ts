@@ -458,13 +458,6 @@ namespace CXgoRider {
     }
 
     //% subcategory="Wave"
-    //% block="position %player"
-    //% block.loc.nl="positie %player"
-    export function isPosition(): number {
-        return POSITION
-    }
-
-    //% subcategory="Wave"
     //% block="do a %wave wave"
     //% block.loc.nl="maak een %wave wave"
     export function setWave(wave: Wave) {
