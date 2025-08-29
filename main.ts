@@ -479,8 +479,7 @@ namespace CXgoRider {
 
     //% subcategory="Leds"
     //% block="turn led %led to %color"
-    //% block.loc.nl="maak led %led %kleur"
-    //% height.min=0 height.max=20 height.defl=0
+    //% block.loc.nl="maak led %led %color"
     export function led(led: Led, color: Color) {
         MESSAGE = 2000 + led * 30 + color
         if (!PAUSE) handleMessage()
