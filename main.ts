@@ -1,3 +1,13 @@
+enum Led {
+    Led1 = 1,
+    Led2 = 2,
+    Led3 = 4,
+    Led4 = 8,
+    All = 15,
+    Left = 3,
+    Right = 12
+}
+
 //% color="#00CC00" icon="\uf1f9"
 //% block="XGO Rider"
 //% block.loc.nl="XGO Rider"
@@ -22,6 +32,24 @@ namespace CXgoRider {
         commands_buffer[7] = tailDataH
         commands_buffer[8] = tailDataL
         serial.writeBuffer(commands_buffer)
+        basic.pause(100)
+    }
+
+    function writeThreeCommand(len: number, addr: number, data0: number, data1: number, data2: number) {
+        let commands_buffer = pins.createBuffer(len)
+        commands_buffer[0] = headDataH
+        commands_buffer[1] = headDataL
+        commands_buffer[2] = len
+        commands_buffer[3] = 0x00
+        commands_buffer[4] = addr
+        commands_buffer[5] = data0
+        commands_buffer[6] = data1
+        commands_buffer[7] = data2
+        commands_buffer[8] = ~(len + 0x00 + addr + data0 + data1 + data2)
+        commands_buffer[9] = tailDataH
+        commands_buffer[10] = tailDataL
+        serial.writeBuffer(commands_buffer)
+        basic.pause(100)
     }
 
     function readCommand(len: number, addr: number, readlen: number) {
@@ -45,11 +73,6 @@ namespace CXgoRider {
         let status = readCommand(0x09, 0x02, 0x01)
         if (status == 0x00) return;
         writeCommand(0x09, 0x3E, 0xFF)
-        basic.pause(1000)
-    }
-
-    function performanceMode() {
-        writeCommand(0x09, 0x03, 0x00)
         basic.pause(1000)
     }
 
@@ -106,6 +129,31 @@ namespace CXgoRider {
         writeCommand(0x09, 0x39, data)
     }
 
+    function ledColor(leds: Led, color: Color) {
+
+        let len, addr, data, wait
+        len = 0x0B
+
+        data = rgb(color)
+
+        if (leds & Led.Led1) {
+            addr = 0x69
+            writeThreeCommand(len, addr, ((data >> 16) & 0xff), ((data >> 8) & 0xff), ((data >> 0) & 0xff))
+        }
+        if (leds & Led.Led2) {
+            addr = 0x6A
+            writeThreeCommand(len, addr, ((data >> 16) & 0xff), ((data >> 8) & 0xff), ((data >> 0) & 0xff))
+        }
+        if (leds & Led.Led3) {
+            addr = 0x6B
+            writeThreeCommand(len, addr, ((data >> 16) & 0xff), ((data >> 8) & 0xff), ((data >> 0) & 0xff))
+        }
+        if (leds & Led.Led4) {
+            addr = 0x6C
+            writeThreeCommand(len, addr, ((data >> 16) & 0xff), ((data >> 8) & 0xff), ((data >> 0) & 0xff))
+        }
+    }
+
     //////////////
     // MESSAGES //
     //////////////
@@ -140,6 +188,8 @@ namespace CXgoRider {
 
         Stretch,        // stretch or shrink the body
         Angle,          // angle of the wheels to the floor
+
+        Leds,           // set the color of the leds
 
         NotImplemented  // standard action
     }
@@ -250,6 +300,11 @@ namespace CXgoRider {
     // Message: 700 to 800
     let ANGLE: number = 0
 
+    // Led colors:
+    // -----------
+    let LEDS: number = 0
+    let COLOR: Color = Color.Black
+
     export enum Action {
         //% block="not applicable"
         //% block.loc.nl="niet aanwezig"
@@ -274,6 +329,15 @@ namespace CXgoRider {
         if (MESSAGE >= 10000) {
             wait = MESSAGE - 10000
             MESSAGE = Message.Wait
+        }
+
+        // Instead of 'Message.Led', this message is submitted by
+        // the calculated value of '2000 + Led value * 20 + Color value'.
+        if (MESSAGE >= 2000) {
+            let val = MESSAGE - 2000
+            LEDS = Math.floor(val / 30)
+            COLOR = val - LEDS * 30
+            MESSAGE = Message.Leds
         }
 
         // Instead of 'Message.Speed', this message is submitted by
@@ -375,6 +439,12 @@ namespace CXgoRider {
                 setAngle(ANGLE)
                 break
             //
+            // XGO LEDS CONTROL
+            //
+            case Message.Leds:
+                ledColor(LEDS, COLOR)
+                break;
+            //
             // XGO STANDARD ACTIONS
             //
             case Message.NotImplemented:
@@ -406,6 +476,15 @@ namespace CXgoRider {
         if (!PAUSE) handleMessage()
     }
 */
+
+    //% subcategory="Leds"
+    //% block="turn led %led to %color"
+    //% block.loc.nl="maak led %led %kleur"
+    //% height.min=0 height.max=20 height.defl=0
+    export function led(led: Led, color: Color) {
+        MESSAGE = 2000 + led * 30 + color
+        if (!PAUSE) handleMessage()
+    }
 
     //% subcategory="Bewegen"
     //% block="stretch %height mm"
